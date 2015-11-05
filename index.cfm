@@ -80,7 +80,7 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     background:#ff0000;
     position: absolute; 
     bottom: 35px;
-    left: 55%;
+    left: 67%;
     min-width:14px;
     height: 14px;
     color:#ffffff;
@@ -116,9 +116,19 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
             <li data-role="list-divider">Stored</li>
             <li><a href="#storage" data-transition="slide">
                 <img src="images/album-hc.jpg">
-            <h2>BetterGen Storage 5.6kWh</h2>
+            <h2>L Cube Storage 5.6kWh</h2>
             <p>3.5 hrs stored at this rate. 3.34 kWh Consumed Today</p></a>
             </li>
+            <li><a href="#mcube" data-transition="slide">
+                <img src="images/m-cube.jpg">
+            <h2>M Cube Storage 1kWh</h2>
+            <p>1.5 hrs stored at this rate. 1.34 kWh Consumed Today</p></a>
+            </li>
+            <li><a href="#scube" data-transition="slide">
+                <img src="images/s-cube.jpg">
+            <h2>S Cube Storage 0.2kWh</h2>
+            <p>1.5 hrs stored at this rate. 0.04 kWh Consumed Today</p></a>
+            </li>              
               <cfset countenergy = 0>
                   <cfset countenergyTotal = 0>
               <cfoutput query="energy">
@@ -157,7 +167,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="#" data-icon="grid" class="ui-btn-active ui-state-persist">Power</a>
+                <li><a href="#" data-icon="home" class="ui-btn-active ui-state-persist">Home</a>
+                </li>                
+                <li><a href="#power" data-icon="power">Power</a>
                 </li>
                 <li><a href="#alerts" data-icon="star">Alerts</a>
              
@@ -168,6 +180,94 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
 	</div><!-- /footer -->
                         
 </div><!-- /page -->
+                  
+<!-- Start of first page -->
+<div data-role="page" id="power">
+      
+
+    <div data-role="header" style="text-align: center;"  data-position="fixed" data-theme="b">
+        
+    <img src="images/bc-logo.png" height="40">
+
+    </div>    
+    <!-- /header -->
+
+	<div role="main" class="ui-content">
+         
+        <ul data-role="listview">
+            <li data-role="list-divider">Generation</li>
+            <li><a href="#solar" data-transition="slide">
+                <img src="images/album-p.jpg">
+            <h2>BetterGen Solar 3kW</h2>
+            <p>1 hr til full. 4.72 kWh Generated Today</p></a>
+            </li>
+            <li data-role="list-divider">Stored</li>
+            <li><a href="#storage" data-transition="slide">
+                <img src="images/album-hc.jpg">
+            <h2>L Cube Storage 5.6kWh</h2>
+            <p>3.5 hrs stored at this rate. 3.34 kWh Consumed Today</p></a>
+            </li>
+            <li><a href="#mcube" data-transition="slide">
+                <img src="images/m-cube.jpg">
+            <h2>M Cube Storage 1kWh</h2>
+            <p>1.5 hrs stored at this rate. 1.34 kWh Consumed Today</p></a>
+            </li>
+            <li><a href="#scube" data-transition="slide">
+                <img src="images/s-cube.jpg">
+            <h2>S Cube Storage 0.2kWh</h2>
+            <p>1.5 hrs stored at this rate. 0.04 kWh Consumed Today</p></a>
+            </li>               
+              <cfset countenergy = 0>
+                  <cfset countenergyTotal = 0>
+              <cfoutput query="energy">
+              <cfset countenergy = countenergy + 1>
+              <cfset countenergyTotal = countenergyTotal + (volts*amps*hoursperday)    >
+              </cfoutput>               
+            <li data-role="list-divider">Outlets & Devices - <cfoutput>#NumberFormat(countenergyTotal,'9,999')#</cfoutput> kWh <img src="images/up_arrow_red.png" height="15" style="padding-top: 6px; padding-left: 2px;"></li>
+            <li data-role="list-divider">Outage Backup</li>      
+   
+            <cfoutput query="energy">
+            <li><a href="##usage#energy_id#"  data-transition="slide">
+                <img src="images/album-bb.jpg">
+            <h2>#description#</h2>
+            <p>#NumberFormat(volts*amps,'9,999')# Watts</p></a>
+            </li>
+            </cfoutput>
+            <li data-role="list-divider">Essential</li>      
+   
+            <cfoutput query="energy1">
+            <li><a href="##usage#energy_id#"  data-transition="slide">
+                <img src="images/album-bb.jpg">
+            <h2>#description#</h2>
+            <p>#NumberFormat(volts*amps,'9,999')# Watts</p></a>
+            </li>
+            </cfoutput>                  
+        </ul>
+	</div><!-- /content -->  
+                      
+                   
+                      
+	<div data-role="footer" data-position="fixed" data-theme="b">
+        
+            
+        <div data-role="navbar">
+<div class="icon">
+    <span class="count">1</span>
+</div>             
+            <ul>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>                 
+                <li><a href="#" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
+                </li>
+                <li><a href="#alerts" data-icon="star">Alerts</a>
+             
+                </li>
+                <li><a href="#setup" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->         
+	</div><!-- /footer -->
+                        
+</div><!-- /page -->                  
 
 <div data-role="page" id="solar">
       
@@ -214,7 +314,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="#" data-icon="grid" class="ui-btn-active ui-state-persist">Power</a>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>   
+                <li><a href="#" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
                 </li>
                 <li><a href="#alerts" data-icon="star">Alerts</a>
              
@@ -243,7 +345,7 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
             <li data-role="list-divider">Stored</li>
             <li>
                 <img src="images/album-hc.jpg">
-            <h2>BetterGen Storage 5.6kWh</h2>
+            <h2>L Cube Storage 5.6kWh</h2>
             <p>3.5 hrs stored at this rate. 3.34 kWh Consumed Today</p>
             </li>              
         </ul>
@@ -259,7 +361,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="#" data-icon="grid" class="ui-btn-active ui-state-persist">Power</a>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="#" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
                 </li>
                 <li><a href="#alerts" data-icon="star">Alerts</a>
              
@@ -270,6 +374,100 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
 	</div><!-- /footer -->
                         
 </div><!-- /page -->
+
+<div data-role="page" id="mcube">
+      
+
+    <div data-role="header" style="text-align: center;"  data-position="fixed" data-theme="a">
+        <a href="#main" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-carat-l" data-transition="slide" data-direction="reverse">Back</a>
+        
+    <img src="images/bc-logo.png" height="40">
+
+    </div>    
+    <!-- /header -->
+
+	<div role="main" class="ui-content">
+         
+        <ul data-role="listview">
+            <li data-role="list-divider">Stored</li>
+            <li>
+                <img src="images/m-cube.jpg">
+            <h2>M Cube Storage 1.0kWh</h2>
+            <p>1.5 hrs stored at this rate. 1.34 kWh Consumed Today</p>
+            </li>              
+        </ul>
+	</div><!-- /content -->  
+                      
+                   
+                      
+	<div data-role="footer" data-position="fixed" data-theme="b">
+        
+            
+        <div data-role="navbar">
+<div class="icon">
+    <span class="count">1</span>
+</div>             
+            <ul>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="#" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
+                </li>
+                <li><a href="#alerts" data-icon="star">Alerts</a>
+             
+                </li>
+                <li><a href="#setup" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->         
+	</div><!-- /footer -->
+                        
+</div><!-- /page -->  
+            
+<div data-role="page" id="scube">
+      
+
+    <div data-role="header" style="text-align: center;"  data-position="fixed" data-theme="a">
+        <a href="#main" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-carat-l" data-transition="slide" data-direction="reverse">Back</a>
+        
+    <img src="images/bc-logo.png" height="40">
+
+    </div>    
+    <!-- /header -->
+
+	<div role="main" class="ui-content">
+         
+        <ul data-role="listview">
+            <li data-role="list-divider">Stored</li>
+            <li>
+                <img src="images/s-cube.jpg">
+            <h2>S Cube Storage 0.2kWh</h2>
+            <p>1.5 hrs stored at this rate. 0.04 kWh Consumed Today</p>
+            </li>              
+        </ul>
+	</div><!-- /content -->  
+                      
+                   
+                      
+	<div data-role="footer" data-position="fixed" data-theme="b">
+        
+            
+        <div data-role="navbar">
+<div class="icon">
+    <span class="count">1</span>
+</div>             
+            <ul>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="#" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
+                </li>
+                <li><a href="#alerts" data-icon="star">Alerts</a>
+             
+                </li>
+                <li><a href="#setup" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->         
+	</div><!-- /footer -->
+                        
+</div><!-- /page -->               
 
 <cfoutput query="energy">            
 <div data-role="page" id="usage#energy_id#">
@@ -317,7 +515,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="##" data-icon="grid" class="ui-btn-active ui-state-persist">Power</a>
+                <li><a href="##main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="##" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
                 </li>
                 <li><a href="##alerts" data-icon="star">Alerts</a>
              
@@ -376,7 +576,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="##" data-icon="grid" class="ui-btn-active ui-state-persist">Power</a>
+                <li><a href="##main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="##" data-icon="power" class="ui-btn-active ui-state-persist">Power</a>
                 </li>
                 <li><a href="##alerts" data-icon="star">Alerts</a>
              
@@ -429,7 +631,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="#main" data-icon="grid">Power</a>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="#power" data-icon="power">Power</a>
                 </li>
                 <li><a href="#" data-icon="star" data-icon="grid" class="ui-btn-active ui-state-persist">Alerts</a>
              
@@ -475,7 +679,9 @@ ORDER BY #URL.order_by# #URL.order_by_dir#
     <span class="count">1</span>
 </div>             
             <ul>
-                <li><a href="#main" data-icon="grid">Power</a>
+                <li><a href="#main" data-icon="home">Home</a>
+                </li>                  
+                <li><a href="#power" data-icon="power">Power</a>
                 </li>
                 <li><a href="#alerts" data-icon="star" data-icon="grid">Alerts</a>
              
